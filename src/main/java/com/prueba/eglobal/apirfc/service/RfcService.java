@@ -5,5 +5,5 @@ import com.prueba.eglobal.apirfc.exeption.InvalidDataRfcException;
 
 
 public interface RfcService {
-    public ResponseRFC generarRfc(String nombre, String fechaNac ) throws InvalidDataRfcException;
+    public ResponseRFC generarRfc(String nombre, String fechaNac) throws InvalidDataRfcException;
 }

@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "personas")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +19,10 @@ public class Person {
     private String fechaNacimiento;
     private String rfc;
 
-    public Person(String nombre, String fechaNac, String rfccc) {
+    public Person(String nombre,String fechaNacimiento,String rfc){
+        this.rfc = rfc;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nombre = nombre;
     }
+
 }

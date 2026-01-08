@@ -12,13 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class RfcServiceImpl implements RfcService {
     private RfcRepository rfcRepository;
-    public void RfcService(RfcRepository rfcRepository){
+    public  RfcServiceImpl(RfcRepository rfcRepository){
         this.rfcRepository = rfcRepository;
     }
     @Override
     public ResponseRFC generarRfc(String nombre, String fechaNac) throws InvalidDataRfcException {
         log.info("RFC CONTROLLER V1>>>>>>>>INICIA GENERAR RFC");
-        rfcRepository.save(new Person(nombre,fechaNac,"rfccc"));
+        Person persona = new  Person(nombre,fechaNac,"rfccc");
+        rfcRepository.save(persona);
         return new ResponseRFC("null","rfc1");
     }
 }
