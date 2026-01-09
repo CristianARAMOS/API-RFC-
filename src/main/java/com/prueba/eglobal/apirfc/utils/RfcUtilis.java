@@ -5,8 +5,6 @@ import com.prueba.eglobal.apirfc.dto.RequestRFC;
 import com.prueba.eglobal.apirfc.model.Person;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.List;
 
 
 @Slf4j
@@ -14,10 +12,18 @@ public class RfcUtilis {
     public static Boolean validarDatos(RequestRFC requestRFC){
         log.info("Validando informacion>>>>>");
         if (requestRFC.nombre() == null || requestRFC.nombre().trim().isEmpty()
-                || requestRFC.fechaNacimiento() == null || requestRFC.fechaNacimiento().trim().isEmpty()){
+                || requestRFC.nombre().equalsIgnoreCase("null")
+                || requestRFC.fechaNacimiento() == null || requestRFC.fechaNacimiento().trim().isEmpty()
+                || requestRFC.fechaNacimiento().equalsIgnoreCase("null")){
             log.info("nombre o fecha nacimiento vacios o nulos");
             return false;
         }
+        String nombres[] = requestRFC.nombre().split(" ");
+        if(nombres.length< 3 || requestRFC.fechaNacimiento().length()<8){
+            log.info("NOMBRE O FECHA DE NACIMIENTO INVALIDOS");
+            return false;
+        }
+
         return true;
     }
 

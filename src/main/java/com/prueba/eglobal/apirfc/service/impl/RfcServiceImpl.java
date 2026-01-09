@@ -29,7 +29,7 @@ public class RfcServiceImpl implements RfcService {
         String rfc = RfcUtilis.generarRFC(nombre.split(" "), fechaNac);
         Person persona = new  Person(nombre,fechaNac,rfc);
         rfcRepository.save(persona);
-        return new ResponseRFC("null",rfc);
+        return new ResponseRFC("null","OPERACION EXITOSA",rfc);
     }
 
     @Override

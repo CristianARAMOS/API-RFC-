@@ -27,7 +27,7 @@ public class RfcController {
             }
             return ResponseEntity.ok(rfcService.generarRfc(request.nombre(),request.fechaNacimiento()));
         } catch (InvalidDataRfcException e) {
-            return ResponseEntity.badRequest().body(new ResponseRFC("001","null"));
+            return ResponseEntity.badRequest().body(new ResponseRFC("001","NOMBRE O FECHA NACIMIENTO INVALIDOS","null"));
         }
 
     }
@@ -44,7 +44,7 @@ public class RfcController {
 
             return ResponseEntity.ok(resultado);
         } catch (DataNoExistException e) {
-        return ResponseEntity.badRequest().body(new ResponseRFC("002","null"));
+        return ResponseEntity.badRequest().body(new ResponseRFC("002","NO EXISTE INFORMACION O MULTIPLES REGISTROS CON EL CRITERIO DE BUSQUEDA","null"));
 
         }
     }
