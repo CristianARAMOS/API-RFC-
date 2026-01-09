@@ -18,7 +18,7 @@ API Principal: http://localhost:8080
 
 # Consola H2 Database: http://localhost:8080/h2-console
 
-#Endpoints Principales
+# Endpoints Principales
 GET /api/v1/rfc/{data} - Buscar persona por RFC, nombre o fecha o obtener todos 
 
 POST /api/v1/rfc/generar - Generar RFC a partir de datos personales
