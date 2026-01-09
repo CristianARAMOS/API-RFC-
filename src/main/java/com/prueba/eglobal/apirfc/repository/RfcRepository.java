@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface RfcRepository extends JpaRepository<Person, Long> {
     Optional<Person> findByNombre(String nombre);
     Optional<Person> findByRfc(String rfc);
+    Optional<Person> findByFechaNacimiento(String fechaNa);
 }
+
