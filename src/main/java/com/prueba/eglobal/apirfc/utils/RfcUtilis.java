@@ -2,9 +2,10 @@ package com.prueba.eglobal.apirfc.utils;
 
 import com.prueba.eglobal.apirfc.dto.PersonDto;
 import com.prueba.eglobal.apirfc.dto.RequestRFC;
+import com.prueba.eglobal.apirfc.exeption.InvalidFormatExeption;
 import com.prueba.eglobal.apirfc.model.Person;
 import lombok.extern.slf4j.Slf4j;
-
+import org.hibernate.graph.InvalidGraphException;
 
 
 @Slf4j
@@ -32,7 +33,7 @@ public class RfcUtilis {
         return personDto;
     }
 
-    public static String ValidarTipo(String data){
+    public static String ValidarTipo(String data)throws InvalidFormatExeption {
         log.info("VALIDANDO TIPO DE CONSULTA>>>>>>>>>>");
         if(data.length() == 8 && data.charAt(4) == '1'){
             log.info("ES FECHA NACI");
@@ -41,6 +42,10 @@ public class RfcUtilis {
         if (data.length() == 10 && Character.isDigit(data.charAt(9))) {
             log.info("ES RFC");
             return "RFC";
+        }
+        String nombreCompleto[] = data.split(" ");
+        if (nombreCompleto.length<3){
+            throw new InvalidFormatExeption("NOMBRE INCOMPLETO FALTA APELLIDO PATERNO O APELLIDO MATERNO");
         }
         return "NAME";
     }

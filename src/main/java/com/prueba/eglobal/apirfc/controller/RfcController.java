@@ -5,6 +5,7 @@ import com.prueba.eglobal.apirfc.dto.RequestRFC;
 import com.prueba.eglobal.apirfc.dto.ResponseRFC;
 import com.prueba.eglobal.apirfc.exeption.DataNoExistException;
 import com.prueba.eglobal.apirfc.exeption.InvalidDataRfcException;
+import com.prueba.eglobal.apirfc.exeption.InvalidFormatExeption;
 import com.prueba.eglobal.apirfc.service.impl.RfcServiceImpl;
 import com.prueba.eglobal.apirfc.utils.RfcUtilis;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,8 @@ public class RfcController {
             return ResponseEntity.ok(resultado);
         } catch (DataNoExistException e) {
         return ResponseEntity.badRequest().body(new ResponseRFC("002","NO EXISTE INFORMACION O MULTIPLES REGISTROS CON EL CRITERIO DE BUSQUEDA","null"));
-
+        } catch (InvalidFormatExeption e) {
+            return ResponseEntity.badRequest().body(new ResponseRFC("003",e.getMessage(),"null") );
         }
     }
 

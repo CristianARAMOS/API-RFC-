@@ -4,6 +4,7 @@ import com.prueba.eglobal.apirfc.dto.PersonDto;
 import com.prueba.eglobal.apirfc.dto.ResponseRFC;
 import com.prueba.eglobal.apirfc.exeption.DataNoExistException;
 import com.prueba.eglobal.apirfc.exeption.InvalidDataRfcException;
+import com.prueba.eglobal.apirfc.exeption.InvalidFormatExeption;
 import com.prueba.eglobal.apirfc.model.Person;
 import com.prueba.eglobal.apirfc.repository.RfcRepository;
 import com.prueba.eglobal.apirfc.service.RfcService;
@@ -33,7 +34,7 @@ public class RfcServiceImpl implements RfcService {
     }
 
     @Override
-    public PersonDto obtenerPerson( String data) throws DataNoExistException {
+    public PersonDto obtenerPerson( String data) throws DataNoExistException, InvalidFormatExeption {
         log.info("OBTENIENDO REGISTRO>>>>>><");
         try {
             String type = RfcUtilis.ValidarTipo(data);
@@ -50,6 +51,10 @@ public class RfcServiceImpl implements RfcService {
 
 
             return RfcUtilis.convertirAPersonDto(persona);
+        } catch (InvalidFormatExeption e){
+            log.error("NOMBRE INCOMPLETO NOMBRE APELLIDOPATERNO APELLIDO MATERNO");
+            throw new InvalidFormatExeption(e.getMessage());
+
         } catch (Exception e){
             log.error("REGISTRO DUPLICADO EN DB");
             throw new DataNoExistException("Registros duplicados en la DB");
