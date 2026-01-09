@@ -11,7 +11,7 @@ docker build -t api-rfc .
 
 # Ejecutar el contenedor en el puerto 8080
 docker run -p 8080:8080 --env-file .env api-rfc
-3. Acceso a la Aplicación
+Acceso a la Aplicación
 API Principal: http://localhost:8080
 
 Documentación Swagger: http://localhost:8080/swagger-ui.html
